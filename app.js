@@ -25,3 +25,30 @@ connection.connect((err) => {
   }
 });
 
+// Function for users options
+function userOptions() {
+  inquirer
+    .prompt({
+      name: "action",
+      type: "list",
+      message: "What would you like to do?",
+      choices: [
+        "View all departments",
+        "View all employees",
+        "View all roles",
+        "Add an employee",
+      ],
+    })
+    .then(function (answer) {
+      switch (answer.action) {
+        case "View all departments":
+          viewDepartment();
+          break;
+        case "View all employees":
+          viewEmployees();
+          break;
+        case "View all roles":
+          viewRoles();
+          break;
+      }
+    });
