@@ -65,3 +65,24 @@ function viewDepartment() {
   });
 }
 
+// view all employees in the database
+function viewEmployees() {
+  var query = "SELECT * FROM employee";
+  connection.query(query, function (err, res) {
+    if (err) throw err;
+    console.log(res.length + " employees exist!");
+    console.table("All Employees:", res);
+    userOptions();
+  });
+}
+
+// view all roles in the database
+function viewRoles() {
+  var query = "SELECT * FROM role";
+  connection.query(query, function (err, res) {
+    if (err) throw err;
+    console.table("All Roles:", res);
+
+    userOptions();
+  });
+
