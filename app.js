@@ -53,3 +53,15 @@ function userOptions() {
       }
     });
 }
+
+// View all departments in the database
+function viewDepartment() {
+  var query = "SELECT * FROM department";
+  connection.query(query, function (err, res) {
+    if (err) throw err;
+    console.log(res.length + " departments exist!");
+    console.table("All departments:", res);
+    userOptions();
+  });
+}
+
