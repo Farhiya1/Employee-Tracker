@@ -36,6 +36,7 @@ function userOptions() {
         "View all departments",
         "View all employees",
         "View all roles",
+        "Add a department",
         "Add an employee",
       ],
     })
