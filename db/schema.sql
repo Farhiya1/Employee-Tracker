@@ -6,7 +6,7 @@ USE employee_db;
 
 CREATE TABLE department (
     id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    full_name VARCHAR (30) NOT NULL
+    name VARCHAR (30) NOT NULL
 );
 
 CREATE TABLE role (
