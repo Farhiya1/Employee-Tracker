@@ -38,6 +38,8 @@ function userOptions() {
         "View all roles",
         "Add a department",
         "Add an employee",
+        "Add a role",
+        "Update a role",
       ],
     })
     .then(function (answer) {
