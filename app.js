@@ -53,6 +53,18 @@ function userOptions() {
         case "View all roles":
           viewRoles();
           break;
+        case "Add a department":
+          addDepartment();
+          break;
+        case "Add an employee":
+          addEmployee();
+          break;
+        case "Add a role":
+          addRole();
+          break;
+        case "Update a role":
+          updateRole();
+          break;
       }
     });
 }
