@@ -240,3 +240,63 @@ function addRole() {
       });
   });
 }
+
+const updateRole = () => {
+  //get all the employee list
+  connection.query("SELECT * FROM EMPLOYEE", (err, res) => {
+    if (err) throw err;
+    const employeeChoice = [];
+    res.forEach(({ first_name, last_name, id }) => {
+      employeeChoice.push({
+        name: first_name + " " + last_name,
+        value: id,
+      });
+    });
+
+    //get all the role list to make choice of employee's role
+    connection.query("SELECT * FROM ROLE", (err, res) => {
+      if (err) throw err;
+      const roleChoice = [];
+      res.forEach(({ title, id }) => {
+        roleChoice.push({
+          name: title,
+          value: id,
+        });
+      });
+
+      let questions = [
+        {
+          type: "list",
+          name: "id",
+          choices: employeeChoice,
+          message: "whose role do you want to update?",
+        },
+        {
+          type: "list",
+          name: "role_id",
+          choices: roleChoice,
+          message: "what is the employee's new role?",
+        },
+      ];
+
+      inquirer
+        .prompt(questions)
+        .then((response) => {
+          const query = `UPDATE EMPLOYEE SET ? WHERE ?? = ?;`;
+          connection.query(
+            query,
+            [{ role_id: response.role_id }, "id", response.id],
+            (err, res) => {
+              if (err) throw err;
+
+              console.log("successfully updated employee's role!");
+              userOptions();
+            }
+          );
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+    });
+  });
+};
