@@ -1,6 +1,6 @@
 USE employee_db;
 
-INSERT INTO department (full_name)
+INSERT INTO department (name)
 VALUES 
 ('Engineering'),
 ('Finance'),
