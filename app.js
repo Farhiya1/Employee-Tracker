@@ -207,11 +207,11 @@ function addRole() {
           name: "Department",
           type: "list",
           choices: function () {
-            var deptartmentArray = [];
+            var departmentArray = [];
             for (let i = 0; i < res.length; i++) {
-              deptArry.push(res[i].name);
+              departmentArray.push(res[i].name);
             }
-            return deptartmentArray;
+            return departmentArray;
           },
         },
       ])
