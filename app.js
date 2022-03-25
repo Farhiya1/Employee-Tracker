@@ -186,3 +186,57 @@ function addEmployee() {
   });
 }
 
+// add a role to the database
+function addRole() {
+  connection.query("SELECT * FROM department", function (err, res) {
+    if (err) throw err;
+
+    inquirer
+      .prompt([
+        {
+          name: "new_role",
+          type: "input",
+          message: "What new role would you like to add?",
+        },
+        {
+          name: "salary",
+          type: "input",
+          message: "What is the salary of this new role? (Enter an amount)",
+        },
+        {
+          name: "Department",
+          type: "list",
+          choices: function () {
+            var deptartmentArray = [];
+            for (let i = 0; i < res.length; i++) {
+              deptArry.push(res[i].name);
+            }
+            return deptartmentArray;
+          },
+        },
+      ])
+      .then(function (answer) {
+        let department_id;
+        for (let x = 0; x < res.length; x++) {
+          if (res[x].name == answer.Department) {
+            department_id = res[x].id;
+          }
+        }
+
+        connection.query(
+          "INSERT INTO role SET ?",
+          {
+            title: answer.new_role,
+            salary: answer.salary,
+            department_id: department_id,
+          },
+          function (err, res) {
+            if (err) throw err;
+            console.log("You have successfully added a new role!");
+            console.table("All Roles:", res);
+            userOptions();
+          }
+        );
+      });
+  });
+}
